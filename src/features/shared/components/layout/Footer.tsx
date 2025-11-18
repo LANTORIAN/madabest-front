@@ -56,7 +56,7 @@ export function Footer() {
 
   return (
     <footer className="relative w-full bg-white px-8 py-10 lg:px-16">
-      <div className="mx-auto max-w-[1452px]">
+      <div className="mx-auto max-w-full">
         {/* 3 colonnes principales */}
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-3">
           {/* Colonne gauche - Logo + contact */}
@@ -66,19 +66,16 @@ export function Footer() {
               alt="Madabest"
               width={341}
               height={153}
-              className="select-none"
+              className="-ml-20 select-none"
               priority
             />
 
             <div className="space-y-4">
               <div className="flex items-start gap-3">
                 <Phone className="h-6 w-6 text-black" />
-                <div>
+                <div className="flex flex-col">
                   <p className="text-[16px] leading-[23px] font-semibold text-black">
-                    +261 34 28 325 14 /
-                  </p>
-                  <p className="text-[16px] leading-[23px] font-semibold text-black">
-                    +261 32 05 127 11
+                    +261 34 28 325 14 / +261 32 05 127 11
                   </p>
                 </div>
               </div>
@@ -87,10 +84,7 @@ export function Footer() {
                 <Mail className="h-6 w-6 text-black" />
                 <div>
                   <p className="text-[16px] leading-[23px] font-semibold text-black">
-                    madabesrtip@gmail.com /
-                  </p>
-                  <p className="text-[16px] leading-[23px] font-semibold text-black">
-                    contact@madabestour.com
+                    madabesrtip@gmail.com / contact@madabestour.com
                   </p>
                 </div>
               </div>
@@ -103,24 +97,11 @@ export function Footer() {
               </div>
             </div>
 
-            <div>
-              <h3 className="mb-4 text-[24px] leading-[35px] font-bold text-black">Suivez-nous</h3>
-              <div className="flex gap-4">
-                {socialLinks.map((social, index) => (
-                  <a
-                    key={index}
-                    href={social.url}
-                    className="text-black transition-colors hover:text-[#E2531F]"
-                  >
-                    <social.icon className="h-6 w-6" />
-                  </a>
-                ))}
-              </div>
-            </div>
+            {/* Intentionally left empty: 'Suivez-nous' row moved below grid */}
           </div>
 
           {/* Colonne milieu - Services */}
-          <div className="flex flex-col justify-center space-y-3">
+          <div className="mt-30 flex flex-col justify-center space-y-4">
             {footerLinks.services.map((link) => (
               <Link
                 key={link.href}
@@ -153,18 +134,34 @@ export function Footer() {
                 </div>
               </Button>
             </form>
+          </div>
+        </div>
 
-            <div className="flex flex-wrap gap-x-8 gap-y-2 border-t border-black pt-6">
-              {footerLinks.navigation.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className="text-[16px] font-medium text-black hover:text-[#E2531F]"
-                >
-                  {link.label}
-                </Link>
-              ))}
-            </div>
+        {/* Row: Suivez-nous + Navigation on same line */}
+        <div className="mt-6 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+          <div className="flex items-center gap-4">
+            <h3 className="text-[24px] leading-[35px] font-bold text-black">Suivez-nous</h3>
+            {socialLinks.map((social, index) => (
+              <a
+                key={index}
+                href={social.url}
+                aria-label={social.label}
+                className="text-black transition-colors hover:text-[#E2531F]"
+              >
+                <social.icon className="h-6 w-6" />
+              </a>
+            ))}
+          </div>
+          <div className="flex flex-wrap gap-x-8 gap-y-2 md:justify-end">
+            {footerLinks.navigation.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="text-[16px] font-medium text-black hover:text-[#E2531F]"
+              >
+                {link.label}
+              </Link>
+            ))}
           </div>
         </div>
 

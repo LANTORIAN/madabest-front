@@ -76,7 +76,7 @@ export default function TermsPage() {
   return (
     <div className="min-h-screen bg-[#FFF6E4]">
       <MainLayout>
-        <main className="mx-auto w-full max-w-7xl px-4 py-10 lg:py-16">
+        <main className="mx-auto w-full max-w-7xl px-4">
           <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <div className="relative w-full lg:h-[309px]">
               {/* Desktop: follow exact Figma positioning */}

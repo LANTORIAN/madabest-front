@@ -23,7 +23,11 @@ import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { MobileMenu } from "./MobileMenu";
 
-export function Header() {
+interface HeaderProps {
+  /** Tailwind text color utility e.g. 'text-white' | 'text-black'. If omitted, auto-selects based on route */
+  textColorClass?: string;
+}
+export function Header({ textColorClass }: HeaderProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [lang, setLang] = useState("fr");
   const pathname = usePathname();
@@ -74,6 +78,16 @@ export function Header() {
     { label: "Contact", href: "/contact" },
   ];
 
+  // Auto fallback: pages services, terms, contact => black text else white
+  const autoColor = ["/services", "/terms", "/contact"].includes(pathname)
+    ? "text-black"
+    : "text-white";
+  const finalTextColor = textColorClass || autoColor;
+  const isDark = finalTextColor.includes("text-black");
+  const lineColor = isDark ? "bg-black/90" : "bg-white/90";
+  const borderColor = isDark ? "border-black" : "border-white";
+  const mutedText = isDark ? "text-black/50" : "text-white/50";
+
   return (
     <header
       className={`fixed top-0 right-0 left-0 z-50 transition-all duration-300 ${
@@ -101,7 +115,7 @@ export function Header() {
 
           {/* Ligne blanche + indicateur orange sous le lien actif */}
           <div ref={lineRef} className="absolute top-[77.12%] right-0 left-[5.6%] xl:left-[5.74%]">
-            <div className="h-0.5 w-full bg-white/90" />
+            <div className={`h-0.5 w-full ${lineColor}`} />
             <div
               className="absolute top-1/2 h-1 -translate-y-1/2 bg-[#E2531F] transition-all duration-300"
               style={{ left: indicatorStyle.left, width: indicatorStyle.width }}
@@ -118,7 +132,7 @@ export function Header() {
                     key={link.href}
                     href={link.href}
                     ref={isActive ? activeLinkRef : undefined}
-                    className={`group relative leading-[22px] font-medium text-white transition-colors hover:text-[#E2531F] lg:text-sm xl:text-[16px] ${
+                    className={`group relative leading-[22px] font-medium ${finalTextColor} transition-colors hover:text-[#E2531F] lg:text-sm xl:text-[16px] ${
                       isActive ? "text-[#E2531F]" : ""
                     }`}
                   >
@@ -160,19 +174,23 @@ export function Header() {
                   size="icon"
                   variant="ghost"
                   aria-label={lang === "fr" ? "Rechercher" : "Search"}
-                  className="h-[42px] w-[42px] rounded-full border border-white bg-[rgba(31,121,188,0.15)] text-white backdrop-blur-[17px] hover:bg-white/10"
+                  className={`h-[42px] w-[42px] rounded-full border ${borderColor} bg-[rgba(31,121,188,0.15)] ${finalTextColor} backdrop-blur-[17px] hover:${isDark ? "bg-black/10" : "bg-white/10"}`}
                 >
                   <Search className="h-5 w-5" />
                 </Button>
               </DialogTrigger>
-              <DialogContent className="max-w-xl border-white/20 bg-black/80 backdrop-blur-xl">
+              <DialogContent
+                className={`max-w-xl ${isDark ? "border-black/20 bg-white/90" : "border-white/20 bg-black/80"} backdrop-blur-xl`}
+              >
                 <DialogHeader>
-                  <DialogTitle className="text-white">
+                  <DialogTitle className={finalTextColor}>
                     {lang === "fr" ? "Rechercher une destination" : "Search a destination"}
                   </DialogTitle>
                 </DialogHeader>
                 <div className="relative">
-                  <Search className="absolute top-1/2 left-4 h-5 w-5 -translate-y-1/2 text-white/50" />
+                  <Search
+                    className={`absolute top-1/2 left-4 h-5 w-5 -translate-y-1/2 ${mutedText}`}
+                  />
                   <Input
                     type="text"
                     placeholder={
@@ -180,7 +198,7 @@ export function Header() {
                         ? "Ex: Nosy-Be, Antsiranana..."
                         : "e.g., Nosy-Be, Antsiranana..."
                     }
-                    className="w-full rounded-lg border-white/30 bg-white/10 py-3 pr-4 pl-12 text-white placeholder:text-white/50 focus:border-white/50"
+                    className={`w-full rounded-lg ${isDark ? "border-black/30 bg-black/5" : "border-white/30 bg-white/10"} py-3 pr-4 pl-12 ${finalTextColor} placeholder:${mutedText} focus:${isDark ? "border-black/50" : "border-white/50"}`}
                   />
                 </div>
               </DialogContent>
@@ -207,11 +225,15 @@ export function Header() {
           {/* Sélecteur de langue */}
           <div className="absolute top-[45.1%] left-[92.88%] -translate-y-1/2 lg:block">
             <Select value={lang} onValueChange={setLang}>
-              <SelectTrigger className="h-[35px] items-center justify-center gap-2 rounded border-2 border-white bg-transparent px-2.5 text-white lg:w-11 xl:w-[72.63px]">
+              <SelectTrigger
+                className={`h-[35px] items-center justify-center gap-2 rounded border-2 ${borderColor} bg-transparent px-2.5 ${finalTextColor} lg:w-11 xl:w-[72.63px]`}
+              >
                 <span className="lg:text-[18px] xl:text-[21px]">{lang === "fr" ? "🇫🇷" : "🇬🇧"}</span>
                 <SelectValue className="hidden xl:inline" placeholder="FR" />
               </SelectTrigger>
-              <SelectContent className="border-white/20 bg-black/90 text-white">
+              <SelectContent
+                className={`${isDark ? "border-black/20 bg-white/95" : "border-white/20 bg-black/90"} ${finalTextColor}`}
+              >
                 <SelectItem value="fr">🇫🇷 FR</SelectItem>
                 <SelectItem value="en">🇬🇧 EN</SelectItem>
               </SelectContent>
