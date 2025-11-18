@@ -1,29 +1,28 @@
 "use client";
 
 import { Button } from "@/features/design-system/components/ui/button";
-import { Car, Hotel, Map, Navigation } from "lucide-react";
 import Image from "next/image";
 
 const services = [
   {
     id: "1",
     title: "Excursions",
-    icon: Navigation,
+    iconSrc: "/aventure/excursion.svg",
   },
   {
     id: "2",
     title: "Circuits sur mesure",
-    icon: Map,
+    iconSrc: "/aventure/map.svg",
   },
   {
     id: "3",
     title: "Location de voiture",
-    icon: Car,
+    iconSrc: "/aventure/car.svg",
   },
   {
     id: "4",
     title: "Réservation d'hôtels",
-    icon: Hotel,
+    iconSrc: "/aventure/hotel.svg",
   },
 ];
 
@@ -160,21 +159,24 @@ export function AboutSection() {
 
             {/* Services List */}
             <div className="space-y-[25px]">
-              {services.map((service) => {
-                const Icon = service.icon;
-                return (
-                  <div key={service.id} className="flex items-center gap-4">
-                    {/* Icon Box - 55x50px with orange background */}
-                    <div className="flex h-[50px] w-[55px] shrink-0 items-center justify-center rounded-[5px] bg-[#E2531F]">
-                      <Icon className="h-8 w-8 text-white" />
-                    </div>
-                    {/* Service Title */}
-                    <h4 className="text-[16px] leading-[23px] font-semibold text-white">
-                      {service.title}
-                    </h4>
+              {services.map((service) => (
+                <div key={service.id} className="flex items-center gap-4">
+                  {/* Icon Box - 55x50px with orange background */}
+                  <div className="flex h-[50px] w-[55px] shrink-0 items-center justify-center rounded-[5px] bg-[#E2531F]">
+                    <Image
+                      src={service.iconSrc}
+                      alt={service.title}
+                      width={32}
+                      height={32}
+                      className="h-8 w-8"
+                    />
                   </div>
-                );
-              })}
+                  {/* Service Title */}
+                  <h4 className="text-[16px] leading-[23px] font-semibold text-white">
+                    {service.title}
+                  </h4>
+                </div>
+              ))}
             </div>
 
             {/* CTA Button */}
