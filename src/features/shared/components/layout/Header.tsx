@@ -86,7 +86,7 @@ export function Header() {
         {/* Desktop Header */}
         <nav className="relative hidden h-[153px] w-full items-center lg:flex">
           {/* Logo légèrement plus à droite et aligné sur la ligne */}
-          <div className="absolute top-1/2 left-[4.5%] -translate-y-1/2">
+          <div className="absolute top-1/2 left-[2.5%] -translate-y-1/2 xl:left-[4.5%]">
             <Link href="/" aria-label="Aller à l'accueil">
               <Image
                 src="/logo1.png"
@@ -94,13 +94,13 @@ export function Header() {
                 width={550}
                 height={60}
                 priority
-                className="h-[153px] w-[341px] select-none"
+                className="h-[153px] select-none lg:w-[260px] xl:w-[341px]"
               />
             </Link>
           </div>
 
           {/* Ligne blanche + indicateur orange sous le lien actif */}
-          <div ref={lineRef} className="absolute top-[77.12%] right-0 left-[5.74%]">
+          <div ref={lineRef} className="absolute top-[77.12%] right-0 left-[5.6%] xl:left-[5.74%]">
             <div className="h-0.5 w-full bg-white/90" />
             <div
               className="absolute top-1/2 h-1 -translate-y-1/2 bg-[#E2531F] transition-all duration-300"
@@ -109,8 +109,8 @@ export function Header() {
           </div>
 
           {/* Liens */}
-          <div className="absolute top-[50.98%] right-[31.3%] left-[22.08%] -translate-y-1/2 transform">
-            <div className="flex items-center gap-8">
+          <div className="absolute top-[50.98%] right-[31%] left-[28%] -translate-y-1/2 transform xl:right-[31.3%] xl:left-[22.08%]">
+            <div className="flex items-center gap-5 xl:gap-8">
               {navLinks.map((link) => {
                 const isActive = pathname === link.href;
                 return (
@@ -118,11 +118,28 @@ export function Header() {
                     key={link.href}
                     href={link.href}
                     ref={isActive ? activeLinkRef : undefined}
-                    className={`group relative text-[16px] leading-[23px] font-medium text-white transition-colors hover:text-[#E2531F] ${
+                    className={`group relative leading-[22px] font-medium text-white transition-colors hover:text-[#E2531F] lg:text-sm xl:text-[16px] ${
                       isActive ? "text-[#E2531F]" : ""
                     }`}
                   >
-                    {link.label}
+                    {link.href === "/terms" ? (
+                      <>
+                        <span className="hidden xl:inline">Conditions & modalités</span>
+                        <span className="xl:hidden">Conditions</span>
+                      </>
+                    ) : link.href === "/activities" ? (
+                      <>
+                        <span className="hidden xl:inline">Nos activités</span>
+                        <span className="xl:hidden">Activités</span>
+                      </>
+                    ) : link.href === "/services" ? (
+                      <>
+                        <span className="hidden xl:inline">Nos services</span>
+                        <span className="xl:hidden">Services</span>
+                      </>
+                    ) : (
+                      link.label
+                    )}
                     {/* Soulignement local au survol – on laisse actif pour feedback mais c'est la grande ligne qui marque la page */}
                     <span
                       className={`absolute -bottom-2 left-0 h-0.5 w-full scale-x-0 transition-transform duration-300 group-hover:scale-x-100 ${
@@ -136,13 +153,13 @@ export function Header() {
           </div>
 
           {/* Recherche */}
-          <div className="absolute top-[47.71%] left-[70.3%] -translate-y-1/2">
+          <div className="absolute top-[47.71%] left-[74%] -translate-y-1/2 xl:left-[70.3%]">
             <Dialog>
               <DialogTrigger asChild>
                 <Button
                   size="icon"
                   variant="ghost"
-                  aria-label="Rechercher"
+                  aria-label={lang === "fr" ? "Rechercher" : "Search"}
                   className="h-[42px] w-[42px] rounded-full border border-white bg-[rgba(31,121,188,0.15)] text-white backdrop-blur-[17px] hover:bg-white/10"
                 >
                   <Search className="h-5 w-5" />
@@ -150,13 +167,19 @@ export function Header() {
               </DialogTrigger>
               <DialogContent className="max-w-xl border-white/20 bg-black/80 backdrop-blur-xl">
                 <DialogHeader>
-                  <DialogTitle className="text-white">Rechercher une destination</DialogTitle>
+                  <DialogTitle className="text-white">
+                    {lang === "fr" ? "Rechercher une destination" : "Search a destination"}
+                  </DialogTitle>
                 </DialogHeader>
                 <div className="relative">
                   <Search className="absolute top-1/2 left-4 h-5 w-5 -translate-y-1/2 text-white/50" />
                   <Input
                     type="text"
-                    placeholder="Ex: Nosy-Be, Antsiranana..."
+                    placeholder={
+                      lang === "fr"
+                        ? "Ex: Nosy-Be, Antsiranana..."
+                        : "e.g., Nosy-Be, Antsiranana..."
+                    }
                     className="w-full rounded-lg border-white/30 bg-white/10 py-3 pr-4 pl-12 text-white placeholder:text-white/50 focus:border-white/50"
                   />
                 </div>
@@ -165,22 +188,32 @@ export function Header() {
           </div>
 
           {/* CTA */}
-          <div className="absolute top-[45.1%] left-[74.58%] -translate-y-1/2">
-            <Button className="rounded bg-[#E2531F] px-[15px] py-1.5 text-[16px] leading-[23px] font-medium text-white hover:bg-[#d64a2e]">
-              Commencer votre réservation
+          <div className="absolute top-[45.1%] left-[82%] -translate-y-1/2 xl:left-[74.58%]">
+            <Button className="rounded bg-[#E2531F] py-1.5 leading-[22px] font-medium text-white hover:bg-[#d64a2e] lg:px-3 lg:text-sm xl:px-4 xl:text-[16px]">
+              {lang === "fr" ? (
+                <>
+                  <span className="hidden xl:inline">Commencer votre réservation</span>
+                  <span className="xl:hidden">Réserver</span>
+                </>
+              ) : (
+                <>
+                  <span className="hidden xl:inline">Start your reservation</span>
+                  <span className="xl:hidden">Book now</span>
+                </>
+              )}
             </Button>
           </div>
 
           {/* Sélecteur de langue */}
-          <div className="absolute top-[45.1%] left-[92.88%] -translate-y-1/2">
+          <div className="absolute top-[45.1%] left-[92.88%] -translate-y-1/2 lg:block">
             <Select value={lang} onValueChange={setLang}>
-              <SelectTrigger className="h-[35px] w-[72.63px] items-center justify-center gap-2 rounded border-2 border-white bg-transparent px-[13px] text-white">
-                <span className="text-[21px]">{lang === "fr" ? "🇫🇷" : "🇬🇧"}</span>
-                <SelectValue placeholder="FR" />
+              <SelectTrigger className="h-[35px] items-center justify-center gap-2 rounded border-2 border-white bg-transparent px-2.5 text-white lg:w-11 xl:w-[72.63px]">
+                <span className="lg:text-[18px] xl:text-[21px]">{lang === "fr" ? "🇫🇷" : "🇬🇧"}</span>
+                <SelectValue className="hidden xl:inline" placeholder="FR" />
               </SelectTrigger>
               <SelectContent className="border-white/20 bg-black/90 text-white">
-                <SelectItem value="fr">🇫🇷 FR - Français</SelectItem>
-                <SelectItem value="en">🇬🇧 EN - English</SelectItem>
+                <SelectItem value="fr">🇫🇷 FR</SelectItem>
+                <SelectItem value="en">🇬🇧 EN</SelectItem>
               </SelectContent>
             </Select>
           </div>
