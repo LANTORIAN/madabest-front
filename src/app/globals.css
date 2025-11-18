@@ -237,6 +237,11 @@
     font-family: "Parisienne", cursive;
   }
 
+  /* Kaushan Script utility mapped to next/font variable */
+  .font-kaushan {
+    font-family: var(--font-kaushan-script), cursive;
+  }
+
   /* Styles pour Mapbox */
   .mapboxgl-canvas {
     outline: none;

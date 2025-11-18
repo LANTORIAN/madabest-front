@@ -1,6 +1,6 @@
 "use client";
 
-import { Avatar, AvatarFallback } from "@/features/design-system/components/ui/avatar";
+import { Avatar, AvatarFallback, AvatarImage } from "@/features/design-system/components/ui/avatar";
 import { Button } from "@/features/design-system/components/ui/button";
 import { Card } from "@/features/design-system/components/ui/card";
 import { ChevronLeft, ChevronRight, Quote, Star } from "lucide-react";
@@ -16,7 +16,7 @@ const testimonials = [
     title: "Un voyage inoubliable grâce à Madabest !",
     content:
       "Moi et mon mari avons découvert Madagascar d'une façon unique. L'équipe de Madabest a su créer un circuit sur mesure parfaitement adapté à nos envies : entre excursions nature, moments culturels et plages paradisiaques, tout était parfaitement organisé. Les guides étaient passionnés, toujours disponibles, et nous ont fait sentir comme des amis plus que comme de simples voyageurs. Un grand merci à toute l'équipe pour leur professionnalisme et leur chaleur humaine. Nous repartons avec des souvenirs extraordinaires et l'envie de revenir !",
-    avatar: "/images/avatars/sophie.jpg",
+    avatar: "/testimonial/sophie.jpg",
   },
   {
     id: "2",
@@ -27,7 +27,7 @@ const testimonials = [
     title: "Une expérience authentique et parfaitement organisée",
     content:
       "J'ai choisi Madabest pour mon voyage à Madagascar, et ce fut une expérience incroyable. L'équipe a tout pris en main : du choix des hôtels aux excursions, en passant par la location de voiture, chaque détail était soigneusement préparé. J'ai particulièrement apprécié la gentillesse des guides et leur connaissance du pays, qui m'ont permis de découvrir des endroits hors des sentiers battus. Je recommande vivement Madabest à tous ceux qui souhaitent explorer Madagascar autrement, avec un service professionnel et chaleureux.",
-    avatar: "/images/avatars/jean.jpg",
+    avatar: "/testimonial/jean.jpg",
   },
 ];
 
@@ -48,10 +48,12 @@ export function TestimonialsSection() {
         {/* Header */}
         <div className="mb-14 flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
           <div className="space-y-3">
-            <p className="font-kaushan text-[24px] leading-[35px] text-[#E2531F]">
-              Ce qu’ils disent
-            </p>
-            <div className="h-[3px] w-[77px] bg-[#E2531F]" />
+            <div className="flex items-center gap-2">
+              <p className="font-kaushan text-[24px] leading-[35px] text-[#E2531F]">
+                Ce qu’ils disent
+              </p>
+              <div className="h-[3px] w-[77px] bg-[#E2531F]" />
+            </div>
             <h2 className="max-w-[520px] text-[48px] leading-[69px] font-medium text-black">
               Ce que nos clients disent de nous
             </h2>
@@ -144,7 +146,8 @@ function TestimonialCard({
       </div>
       {/* Author */}
       <div className="flex items-center gap-6">
-        <Avatar className="h-[92px] w-[92px] rounded-full border-4 border-white shadow-md">
+        <Avatar className="h-[92px] w-[92px] rounded-full">
+          <AvatarImage src={testimonial.avatar} alt={testimonial.name} />
           <AvatarFallback className="bg-[#F5F5F5] text-lg font-medium text-black">
             {testimonial.name
               .split(" ")
