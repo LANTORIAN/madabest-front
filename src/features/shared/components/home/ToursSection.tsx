@@ -233,7 +233,7 @@ function TourCard({ tour }: { tour: (typeof tours)[0] }) {
   return (
     <Card className="group relative h-auto w-full cursor-pointer overflow-hidden rounded-[15px] border border-white bg-[rgba(255,255,255,0.2)] backdrop-blur-xs transition-all duration-300 hover:scale-105 hover:bg-white/30">
       {/* Image - Height: 235px */}
-      <div className="relative h-[235px] w-full overflow-hidden rounded-t-[15px]">
+      <div className="relative h-[235px] w-full overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: `url('${tour.image}')` }}
@@ -244,18 +244,15 @@ function TourCard({ tour }: { tour: (typeof tours)[0] }) {
         <button className="absolute top-5 right-5 flex h-[46px] w-[46px] items-center justify-center rounded-full border border-[#E2531F] bg-[rgba(226,83,31,0.17)] backdrop-blur-sm transition-transform hover:scale-110">
           <Bookmark className="h-6 w-6 fill-white text-white" />
         </button>
-
-        {/* Location Pin */}
-        <div className="absolute bottom-4 left-4 flex items-center gap-2">
-          <MapPin className="h-[34px] w-[34px] text-[#E2531F]" />
-        </div>
       </div>
 
       {/* Content */}
       <div className="space-y-4 p-6">
-        {/* Destination Name */}
-        <h3 className="text-[24px] leading-[35px] font-medium text-white">{tour.destination}</h3>
-
+        {/* Destination (Icon + Name on one line) */}
+        <div className="flex items-center gap-3">
+          <MapPin className="h-[34px] w-[34px] text-[#E2531F]" />
+          <h3 className="text-[24px] leading-[35px] font-medium text-white">{tour.destination}</h3>
+        </div>
         {/* Title */}
         <p className="text-[15px] leading-[22px] font-medium text-[#E4E4E4]">{tour.title}</p>
 
