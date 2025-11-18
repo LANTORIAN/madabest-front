@@ -152,7 +152,7 @@ export function ToursSection() {
         <Button
           variant="outline"
           size="lg"
-          className="mb-12 h-[38px] rounded border-none bg-white px-[15px] text-[16px] leading-[23px] font-medium text-black hover:bg-white/90"
+          className="mb-12 h-[38px] cursor-pointer rounded border border-white/30 bg-white/90 px-[15px] text-[16px] leading-[23px] font-medium text-black transition-colors hover:bg-[#E2531F] hover:text-white focus-visible:ring-2 focus-visible:ring-white/60 focus-visible:outline-none"
         >
           Voir toutes les destinations
         </Button>
