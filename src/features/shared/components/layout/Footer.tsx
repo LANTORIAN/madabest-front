@@ -12,11 +12,34 @@ import {
   MessageCircle,
   Phone,
   Send,
-  Twitter,
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import type { SVGProps } from "react";
 import { useState } from "react";
+
+// Brand X (Twitter) logo as a React component using currentColor
+const XLogo = (props: SVGProps<SVGSVGElement>) => (
+  <svg viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+    <mask
+      id="xlogo_mask"
+      style={{ maskType: "luminance" }}
+      maskUnits="userSpaceOnUse"
+      x="0"
+      y="0"
+      width="22"
+      height="22"
+    >
+      <path d="M0 0H22V22H0V0Z" fill="white" />
+    </mask>
+    <g mask="url(#xlogo_mask)">
+      <path
+        d="M17.325 1.03088H20.6989L13.3289 9.47574L22 20.9692H15.2114L9.89057 13.9999L3.80914 20.9692H0.432143L8.31443 11.9335L0 1.03246H6.96143L11.7637 7.40146L17.325 1.03088ZM16.1386 18.9452H18.0086L5.94 2.9496H3.93486L16.1386 18.9452Z"
+        fill="currentColor"
+      />
+    </g>
+  </svg>
+);
 
 const footerLinks = {
   services: [
@@ -40,7 +63,7 @@ const socialLinks = [
   { icon: Facebook, url: "#", label: "Facebook" },
   { icon: Instagram, url: "#", label: "Instagram" },
   { icon: Linkedin, url: "#", label: "LinkedIn" },
-  { icon: Twitter, url: "#", label: "Twitter" },
+  { icon: XLogo, url: "#", label: "X" },
   { icon: MessageCircle, url: "#", label: "WhatsApp" },
 ];
 
@@ -56,7 +79,7 @@ export function Footer() {
 
   return (
     <footer className="relative w-full bg-white px-8 py-10 lg:px-16">
-      <div className="mx-auto max-w-full">
+      <div className="mx-auto max-w-[90%]">
         {/* 3 colonnes principales */}
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-3">
           {/* Colonne gauche - Logo + contact */}
@@ -101,7 +124,7 @@ export function Footer() {
           </div>
 
           {/* Colonne milieu - Services */}
-          <div className="mt-30 flex flex-col justify-center space-y-4">
+          <div className="flex h-full flex-col justify-center space-y-2 lg:mt-20">
             {footerLinks.services.map((link) => (
               <Link
                 key={link.href}
@@ -114,7 +137,7 @@ export function Footer() {
           </div>
 
           {/* Colonne droite - Newsletter */}
-          <div className="space-y-6">
+          <div className="space-y-6 lg:mt-20">
             <h3 className="text-[24px] leading-[35px] font-bold text-black">Entrer en contact</h3>
             <form onSubmit={handleSubscribe} className="relative">
               <Input
@@ -138,8 +161,8 @@ export function Footer() {
         </div>
 
         {/* Row: Suivez-nous + Navigation on same line */}
-        <div className="mt-6 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-          <div className="flex items-center gap-4">
+        <div className="mt-4 flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
+          <div className="flex flex-wrap items-center gap-4 sm:gap-6">
             <h3 className="text-[24px] leading-[35px] font-bold text-black">Suivez-nous</h3>
             {socialLinks.map((social, index) => (
               <a
@@ -152,7 +175,7 @@ export function Footer() {
               </a>
             ))}
           </div>
-          <div className="flex flex-wrap gap-x-8 gap-y-2 md:justify-end">
+          <div className="flex flex-wrap items-center justify-start gap-x-4 gap-y-2 sm:gap-x-6 md:justify-end lg:gap-x-10">
             {footerLinks.navigation.map((link) => (
               <Link
                 key={link.href}
