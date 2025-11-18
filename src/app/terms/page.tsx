@@ -85,8 +85,8 @@ export default function TermsPage() {
                 style={{
                   width: "563px",
                   height: "137px",
-                  left: "calc(50% - 563px/2 - 373.5px)",
-                  top: "172px",
+                  left: "calc(50% - 253px/2 - 373.5px)",
+                  top: "152px",
                   fontFamily: "Jost, sans-serif",
                 }}
               >
@@ -97,13 +97,48 @@ export default function TermsPage() {
                 Conditions générales de réservation et d’annulation
               </h1>
             </div>
-            <div className="flex gap-2">
-              <Button variant="outline" size="sm">
-                <Download className="mr-1 h-4 w-4" /> PDF
-              </Button>
-              <Button variant="outline" size="sm">
-                <Share2 className="mr-1 h-4 w-4" /> Partager
-              </Button>
+            <div className="flex items-center gap-10 text-sm font-medium text-[#0D0D0D] lg:pt-50">
+              <button
+                type="button"
+                className="group flex items-center gap-2 focus:outline-none"
+                aria-label="Télécharger les conditions en PDF"
+              >
+                <span className="whitespace-nowrap">Télécharger les conditions en PDF</span>
+                <svg
+                  width="27"
+                  height="27"
+                  viewBox="0 0 27 27"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M13.5 15V1.5M6 16.5H3C2.60218 16.5 2.22064 16.658 1.93934 16.9393C1.65804 17.2206 1.5 17.6022 1.5 18V24C1.5 24.3978 1.65804 24.7794 1.93934 25.0607C2.22064 25.342 2.60218 25.5 3 25.5H24C24.3978 25.5 24.7794 25.342 25.0607 25.0607C25.342 24.7794 25.5 24.3978 25.5 24V18C25.5 17.6022 25.342 17.2206 25.0607 16.9393C24.7794 16.658 24.3978 16.5 24 16.5H21M19.5 9L13.5 16.5L7.5 9M21 21H21.015"
+                    stroke="#E2531F"
+                    strokeWidth="3"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </button>
+              <button
+                type="button"
+                className="group flex items-center gap-2 focus:outline-none"
+                aria-label="Partager les conditions"
+              >
+                <span className="whitespace-nowrap">Partager</span>
+                <svg
+                  width="30"
+                  height="27"
+                  viewBox="0 0 30 27"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M29.5605 12.4392L17.5605 0.43918C17.3507 0.229466 17.0835 0.0866566 16.7925 0.0288052C16.5016 -0.0290461 16.2001 0.000658426 15.926 0.114163C15.652 0.227669 15.4177 0.419878 15.2529 0.666493C15.0881 0.913107 15.0001 1.20305 15 1.49968V6.81718C10.9024 7.19637 7.09384 9.09097 4.31954 12.1302C1.54523 15.1695 0.0049076 19.1346 0 23.2497V25.4997C0.000236784 25.811 0.0973645 26.1146 0.277911 26.3683C0.458458 26.622 0.713474 26.8132 1.00759 26.9154C1.3017 27.0176 1.62034 27.0258 1.91929 26.9387C2.21825 26.8517 2.48271 26.6738 2.676 26.4297C4.14577 24.6824 5.94891 23.2454 7.98015 22.2026C10.0114 21.1598 12.23 20.5321 14.5065 20.3562C14.5815 20.3472 14.769 20.3322 15 20.3172V25.4997C15.0001 25.7963 15.0881 26.0863 15.2529 26.3329C15.4177 26.5795 15.652 26.7717 15.926 26.8852C16.2001 26.9987 16.5016 27.0284 16.7925 26.9706C17.0835 26.9127 17.3507 26.7699 17.5605 26.5602L29.5605 14.5602C29.8417 14.2789 29.9997 13.8974 29.9997 13.4997C29.9997 13.1019 29.8417 12.7205 29.5605 12.4392ZM18 21.8787V18.7497C18 18.3519 17.842 17.9703 17.5607 17.689C17.2794 17.4077 16.8978 17.2497 16.5 17.2497C16.1175 17.2497 14.556 17.3247 14.157 17.3772C10.1142 17.7493 6.26591 19.2852 3.078 21.7992C3.43987 18.4908 5.00931 15.4322 7.48583 13.2089C9.96235 10.9856 13.1719 9.75395 16.5 9.74968C16.8978 9.74968 17.2794 9.59164 17.5607 9.31034C17.842 9.02904 18 8.6475 18 8.24968V5.12068L26.379 13.4997L18 21.8787Z"
+                    fill="#E2531F"
+                  />
+                </svg>
+              </button>
             </div>
           </div>
 
