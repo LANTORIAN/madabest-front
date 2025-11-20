@@ -110,7 +110,7 @@ export default function ServicesPage() {
         </section>
 
         {/* Cards + dashed plane decoration */}
-        <section className="relative mx-auto mb-24 w-screen px-0">
+        <section className="relative mx-auto mb-24 w-full px-0">
           <svg
             width="48"
             height="48"
@@ -239,17 +239,17 @@ export default function ServicesPage() {
                 {process.map((step, idx) => (
                   <div key={idx} className="flex items-start gap-5">
                     <div className="mt-2 h-3 w-3 rounded-full bg-[#E2531F]" />
-                    <div className="space-y-2">
+                    <div className="space-y-0">
                       <h3 className="text-[20px] leading-[30px] font-semibold text-[#0D0D0D] md:text-[22px] md:leading-8">
                         {step.title}
                       </h3>
-                      <p className="text-[16px] leading-[26px] text-[#0D0D0D] opacity-90 md:text-[18px] md:leading-7">
+                      <p className="text-[16px] leading-[26px] text-[#0D0D0D] opacity-90 md:text-[17px] md:leading-7">
                         {step.desc}
                       </p>
                     </div>
                   </div>
                 ))}
-                <div className="ml-auto flex flex-wrap gap-4 pt-4">
+                <div className="xs:flex-wrap flex items-end gap-4 pt-4 lg:flex-row lg:pl-35 xl:flex-row">
                   <Button
                     variant="outline"
                     className="h-[38px] rounded border border-[#E2531F] bg-white px-6 text-[14px] font-medium text-[#080707] hover:bg-[#E2531F]/10 md:text-[16px]"
