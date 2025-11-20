@@ -14,20 +14,29 @@ export function TermsPanel({ section }: { section: Section }) {
     <div className="px-2 py-2 sm:px-4 sm:py-3">
       <h2 className="mb-2 text-xl font-semibold sm:text-2xl">{s.title}</h2>
       <div className="space-y-3 text-[15px] leading-[1.7] sm:text-base">
-        {s.description.map((p, i) => (
-          <p
-            key={i}
-            className={
-              i === 0 && s.id === "reservation" ? "text-[16px] leading-[23px] font-bold" : ""
-            }
-          >
-            {p}
-          </p>
-        ))}
+        {s.id === "reservation"
+          ? s.description.map((desc, idx) => (
+              <div
+                key={idx}
+                className={idx === 0 ? "text-[16px] leading-[23px] font-bold" : ""}
+                dangerouslySetInnerHTML={{ __html: desc }}
+              />
+            ))
+          : s.description.map((p, i) => <p key={i}>{p}</p>)}
       </div>
 
       {s.id === "reservation" && (
         <div className="mt-6 flex flex-col gap-4">
+          <p>
+            <span className="font-semibold">La réservation d’un voyage</span> ou autres prestations
+            peut se faire au niveau de <span className="font-semibold">notre bureau</span>,
+            <span className="font-semibold"> par téléphone</span> ou toujours
+            <span className="font-semibold"> confirmée par e-mail</span>. Des communications
+            nécessaires et suffisantes pour l&apos;écoute et la compréhension détaillée de chaque
+            étape, de l&apos;itinéraire et du déroulement de votre voyage, ainsi que les
+            accommodations selon les moyens et moments choisis, sont indispensables. Une facture
+            proforma vous sera expédiée dès confirmation de la prestation.
+          </p>
           {/* Image with white border and overlay controls */}
           <div className="relative w-full overflow-hidden rounded-xl border-[3px] border-white md:h-[243px] md:w-[405px]">
             <Image
@@ -49,6 +58,7 @@ export function TermsPanel({ section }: { section: Section }) {
               </span>
             </div>
           </div>
+          <p>L’engagement ne prend effet que qu’à la réception de l’acompte demandé.</p>
 
           {/* Contact pills stacked */}
           <div className="flex flex-col gap-3">
@@ -67,6 +77,15 @@ export function TermsPanel({ section }: { section: Section }) {
 
       {s.id === "assurance" && (
         <div className="mt-5 space-y-4">
+          <p>
+            Notre agence Madabest a souscrit une assurance en responsabilité civile professionnelle
+            auprès de la compagnie <span className="font-semibold">NY HAVANA</span>, couvrant les
+            risques liés à l’exercice de nos activités. Cependant, cette couverture ne comprend pas
+            les évacuations sanitaires, ni les assurances assistance, annulation ou multirisque
+            voyage. Nous recommandons vivement à chaque voyageur de souscrire, auprès de son
+            assureur habituel, une police d’assurance adaptée (assistance médicale, rapatriement,
+            perte de bagages, annulation, etc.) afin de voyager en toute sérénité.
+          </p>
           {/* Logo zone (≈200x49) */}
           <div className="h-[49px] w-[200px] overflow-hidden">
             <Image
@@ -80,7 +99,7 @@ export function TermsPanel({ section }: { section: Section }) {
 
           <div>
             <p className="text-[20px] leading-[29px] font-medium">Contact NY HAVANA :</p>
-            <div className="mt-2 space-y-2 text-sm">
+            <div className="mt-2 space-y-2 text-sm font-semibold">
               <div className="flex items-center gap-2">
                 <MapPin className="h-5 w-5" />
                 <span className="underline">NY HAVANA - ANTANANARIVO</span>
@@ -102,7 +121,10 @@ export function TermsPanel({ section }: { section: Section }) {
         <div className="mt-5 space-y-6">
           {/* Divider */}
           <hr className="border-t-2 border-[#969696]" />
-
+          <p>
+            Les tarifs pourront être révisés à la hausse qu’à la baisse, si des changements majeures
+            de l’extérieur de notre entité interviennent, comme :
+          </p>
           {/* Single-line bullet container (no wrapping) */}
           <div className="overflow-hidden rounded-[10px] border border-[#969696] px-7 py-4">
             <div className="flex flex-nowrap items-center space-x-14 text-[16px] leading-[23px] xl:space-x-16">
@@ -137,13 +159,19 @@ export function TermsPanel({ section }: { section: Section }) {
             est idéalement payable 30 jours avant la date de début du voyage ou départ.
           </p>
           <p>
-            et la préparation du voyage/prestation. Le solde est idéalement payable 30 jours avant
-            la date de début du voyage ou départ. Nous ne pourrons garantir la concrétisation du
-            voyage du client avant que le règlement de la prestation soit intégral. Le paiement peut
-            se faire en Euro ou en Ariary par virement bancaire. Il va sans dire que les frais liés
-            au virement seront à la charge du client. Un email de confirmation de la part du client
-            du virement ou paiement avec une copie de l’ordre du virement est sollicité. Le compte
-            et numéro bancaire vous sont communiqués dès votre demande.
+            et la préparation du voyage/prestation. Le solde est idéalement payable{" "}
+            <span className="font-semibold">
+              30 jours avant la date de début du voyage ou départ
+            </span>
+            . Nous ne pourrons garantir la concrétisation du voyage du client avant que le règlement
+            de la prestation soit intégral.{" "}
+            <span className="font-semibold">
+              Le paiement peut se faire en Euro ou en Ariary par virement bancaire
+            </span>
+            . Il va sans dire que les frais liés au virement seront à la charge du client. Un email
+            de confirmation de la part du client du virement ou paiement avec une copie de l’ordre
+            du virement est sollicité. Le compte et numéro bancaire vous sont communiqués dès votre
+            demande.
           </p>
         </div>
       )}
@@ -169,8 +197,9 @@ export function TermsPanel({ section }: { section: Section }) {
 
           {/* Additional note + reasons box */}
           <p className="pt-2 text-[16px] leading-[23px]">
-            Notre agence, Madabest, se réserve le droit d’annuler ou de modifier un voyage, à un
-            mois (30 jours) avant la date de départ dans les cas où :
+            Notre agence, Madabest, se réserve le droit d’annuler ou de modifier un voyage, à{" "}
+            <span className="font-semibold">un mois (30 jours)</span> avant la date de départ dans
+            les cas où :
           </p>
           <div className="rounded-[14px] border border-[#969696] p-4">
             <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">

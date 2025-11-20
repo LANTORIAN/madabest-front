@@ -3,7 +3,7 @@ import { Button } from "@/features/design-system/components/ui/button";
 import { MainLayout } from "@/features/shared/components/layout";
 import type { Section } from "@/features/terms";
 import { TermsPanel, TermsSidebar } from "@/features/terms";
-import { AlertTriangle, ChevronLeft, ChevronRight, Receipt, ShieldCheck, Tag } from "lucide-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useMemo, useState } from "react";
 
 export default function TermsPage() {
@@ -12,10 +12,7 @@ export default function TermsPage() {
       {
         id: "reservation",
         title: "Réservation & Engagement",
-        description: [
-          "La réservation d’un voyage ou d’autres prestations peut se faire à notre bureau, par téléphone ou e‑mail. Une confirmation claire et complète de l’itinéraire et des prestations vous est envoyée après validation.",
-          "L’engagement ne prend effet qu’à la réception de l’acompte demandé. Une facture proforma vous sera expédiée dès confirmation de la prestation.",
-        ],
+        description: [""],
         sidebarText:
           "Réservation possible en bureau, par téléphone ou e‑mail, confirmée par facture proforma.",
         icon: (
@@ -36,9 +33,7 @@ export default function TermsPage() {
       {
         id: "assurance",
         title: "Assurance",
-        description: [
-          "Notre agence Madabest a souscrit une assurance en responsabilité civile professionnelle auprès de la compagnie NY HAVANA, couvrant les risques liés à l’exercice de nos activités. Cependant, cette couverture ne comprend pas les évacuations sanitaires, ni les assurances assistance, annulation ou multirisque voyage. Nous recommandons vivement à chaque voyageur de souscrire, auprès de son assureur habituel, une police d’assurance adaptée (assistance médicale, rapatriement, perte de bagages, annulation, etc.) afin de voyager en toute sérénité.",
-        ],
+        description: [""],
         sidebarText:
           "Responsabilité civile incluse, assurances voyage complémentaires à votre charge.",
         icon: (
@@ -54,8 +49,8 @@ export default function TermsPage() {
               fill="black"
             />
             <path
-              fill-rule="evenodd"
-              clip-rule="evenodd"
+              fillRule="evenodd"
+              clipRule="evenodd"
               d="M1.8125 0C1.33179 0 0.870779 0.190959 0.530869 0.530869C0.190959 0.870778 0 1.33179 0 1.8125V15.1042C0 15.5849 0.190959 16.0459 0.530869 16.3858C0.870779 16.7257 1.33179 16.9167 1.8125 16.9167H22.3542C22.8349 16.9167 23.2959 16.7257 23.6358 16.3858C23.9757 16.0459 24.1667 15.5849 24.1667 15.1042V1.8125C24.1667 1.33179 23.9757 0.870778 23.6358 0.530869C23.2959 0.190959 22.8349 0 22.3542 0H1.8125ZM22.3542 1.20833H1.8125C1.65226 1.20833 1.49859 1.27199 1.38529 1.38529C1.27199 1.49859 1.20833 1.65226 1.20833 1.8125V15.1042C1.20833 15.2644 1.27199 15.4181 1.38529 15.5314C1.49859 15.6447 1.65226 15.7083 1.8125 15.7083H22.3542C22.5144 15.7083 22.6681 15.6447 22.7814 15.5314C22.8947 15.4181 22.9583 15.2644 22.9583 15.1042V1.8125C22.9583 1.65226 22.8947 1.49859 22.7814 1.38529C22.6681 1.27199 22.5144 1.20833 22.3542 1.20833Z"
               fill="black"
             />
@@ -245,6 +240,24 @@ export default function TermsPage() {
                 Suivant <ChevronRight className="ml-1 h-4 w-4" />
               </Button>
             </div>
+            {sections[0].description && (
+              <div
+                style={{
+                  position: "absolute",
+                  width: "934px",
+                  height: "92px",
+                  left: "calc(50% - 934px/2 - 1918.5px)",
+                  top: "55px",
+                  fontFamily: "Jost, sans-serif",
+                  fontStyle: "normal",
+                  fontWeight: 700,
+                  fontSize: "16px",
+                  lineHeight: "23px",
+                  color: "#000000",
+                }}
+                dangerouslySetInnerHTML={{ __html: sections[0].description.join("<br />") }}
+              />
+            )}
           </section>
         </main>
       </MainLayout>
