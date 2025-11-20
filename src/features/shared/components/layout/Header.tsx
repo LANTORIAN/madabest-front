@@ -100,7 +100,7 @@ export function Header({ textColorClass }: HeaderProps) {
         {/* Desktop Header */}
         <nav className="relative hidden h-[153px] w-full items-center lg:flex">
           {/* Logo légèrement plus à droite et aligné sur la ligne */}
-          <div className="absolute top-1/2 left-[2.5%] -translate-y-1/2 xl:left-[4.5%]">
+          <div className="absolute top-1/2 left-[3.5%] -translate-y-1/2 xl:left-[.5%]">
             <Link href="/" aria-label="Aller à l'accueil">
               <Image
                 src="/logo1.png"
@@ -210,13 +210,13 @@ export function Header({ textColorClass }: HeaderProps) {
             <Button className="rounded bg-[#E2531F] py-1.5 leading-[22px] font-medium text-white hover:bg-[#d64a2e] lg:px-3 lg:text-sm xl:px-4 xl:text-[16px]">
               {lang === "fr" ? (
                 <>
-                  <span className="hidden xl:inline">Commencer votre réservation</span>
-                  <span className="xl:hidden">Réserver</span>
+                  <span className="hidden 2xl:inline">Commencer votre réservation</span>
+                  <span className="left-2 items-center text-center 2xl:hidden">Réserver</span>
                 </>
               ) : (
                 <>
-                  <span className="hidden xl:inline">Start your reservation</span>
-                  <span className="xl:hidden">Book now</span>
+                  <span className="hidden 2xl:inline">Start your reservation</span>
+                  <span className="2xl:hidden">Book now</span>
                 </>
               )}
             </Button>
