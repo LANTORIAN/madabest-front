@@ -14,12 +14,6 @@ export function TermsSidebar({ sections, activeIdx, onSelect }: TermsSidebarProp
         {/* Decorative corner shape */}
         <div className="pointer-events-none absolute top-0 right-0 h-[99px] w-[119px] rounded-tr-[10px] rounded-bl-[130px] bg-[rgba(226,83,31,0.19)]" />
         {/* Dashed segmented lines (desktop) */}
-        <div className="pointer-events-none absolute left-8 hidden lg:block">
-          <div className="absolute top-[143px] h-[67px] border-l border-dashed border-[#A4A4A4]" />
-          <div className="absolute top-[249px] h-[67px] border-l border-dashed border-[#A4A4A4]" />
-          <div className="absolute top-[356px] h-[67px] border-l border-dashed border-[#A4A4A4]" />
-          <div className="absolute top-[460px] h-[67px] border-l border-dashed border-[#E2531F]" />
-        </div>
 
         <ul className="space-y-4">
           {sections.map((s, i) => {
@@ -33,7 +27,7 @@ export function TermsSidebar({ sections, activeIdx, onSelect }: TermsSidebarProp
                 >
                   <div className="flex items-start gap-3">
                     <span
-                      className={`mt-1 flex size-8 items-center justify-center rounded-full border ${selected ? "border-[#E2531F] bg-[#E2531F] text-white" : "border-black/10 bg-white text-black"}`}
+                      className={`mt-1 flex size-8 items-center justify-center ${selected ? "text-white" : "text-black"}`}
                     >
                       {s.icon}
                     </span>
