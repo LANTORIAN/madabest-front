@@ -100,7 +100,7 @@ export function Header({ textColorClass }: HeaderProps) {
         {/* Desktop Header */}
         <nav className="relative hidden h-[153px] w-full items-center lg:flex">
           {/* Logo légèrement plus à droite et aligné sur la ligne */}
-          <div className="absolute top-1/2 left-[3.5%] -translate-y-1/2 xl:left-[.5%]">
+          <div className="absolute top-1/2 left-[3.5%] -translate-y-1/2 xl:left-[5.5%]">
             <Link href="/" aria-label="Aller à l'accueil">
               <Image
                 src="/logo1.png"
@@ -211,7 +211,7 @@ export function Header({ textColorClass }: HeaderProps) {
               {lang === "fr" ? (
                 <>
                   <span className="hidden 2xl:inline">Commencer votre réservation</span>
-                  <span className="left-2 items-center text-center 2xl:hidden">Réserver</span>
+                  <span className="2xl:hidden">Réserver</span>
                 </>
               ) : (
                 <>
