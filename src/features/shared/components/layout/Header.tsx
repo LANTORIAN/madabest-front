@@ -23,6 +23,27 @@ import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { MobileMenu } from "./MobileMenu";
 
+// Inline SVG flag components to replace emoji flags (better rendering & styling control)
+const FlagFR = () => (
+  <svg width="24" height="16" viewBox="0 0 24 16" aria-hidden="true" className="shrink-0">
+    <rect width="24" height="16" fill="#FFFFFF" />
+    <rect width="8" height="16" x="0" fill="#0055A4" />
+    <rect width="8" height="16" x="16" fill="#EF4135" />
+  </svg>
+);
+
+const FlagEN = () => (
+  <svg width="24" height="16" viewBox="0 0 24 16" aria-hidden="true" className="shrink-0">
+    <rect width="24" height="16" fill="#012169" />
+    <path d="M0 0 L24 16 M24 0 L0 16" stroke="#FFFFFF" strokeWidth="3" />
+    <path d="M0 0 L24 16 M24 0 L0 16" stroke="#C8102E" strokeWidth="1.5" />
+    <rect x="10" width="4" height="16" fill="#FFFFFF" />
+    <rect y="6" width="24" height="4" fill="#FFFFFF" />
+    <rect x="11" width="2" height="16" fill="#C8102E" />
+    <rect y="7" width="24" height="2" fill="#C8102E" />
+  </svg>
+);
+
 interface HeaderProps {
   /** Tailwind text color utility e.g. 'text-white' | 'text-black'. If omitted, auto-selects based on route */
   textColorClass?: string;
@@ -100,7 +121,7 @@ export function Header({ textColorClass }: HeaderProps) {
         {/* Desktop Header */}
         <nav className="relative hidden h-[153px] w-full items-center lg:flex">
           {/* Logo légèrement plus à droite et aligné sur la ligne */}
-          <div className="absolute top-1/2 left-[3.5%] -translate-y-1/2 xl:left-[5.5%]">
+          <div className="absolute top-1/2 left-[3.5%] -translate-y-1/2 xl:left-[.5%]">
             <Link href="/" aria-label="Aller à l'accueil">
               <Image
                 src="/logo1.png"
@@ -228,14 +249,25 @@ export function Header({ textColorClass }: HeaderProps) {
               <SelectTrigger
                 className={`h-[35px] items-center justify-center gap-2 rounded border-2 ${borderColor} bg-transparent px-2.5 ${finalTextColor} lg:w-11 xl:w-[72.63px]`}
               >
-                <span className="lg:text-[18px] xl:text-[21px]">{lang === "fr" ? "🇫🇷" : "🇬🇧"}</span>
+                <span className="flex items-center justify-center lg:text-[18px] xl:text-[21px]">
+                  {lang === "fr" ? <FlagFR /> : <FlagEN />}
+                  <span className="sr-only">{lang === "fr" ? "Français" : "English"}</span>
+                </span>
                 <SelectValue className="hidden xl:inline" placeholder="FR" />
               </SelectTrigger>
               <SelectContent
                 className={`${isDark ? "border-black/20 bg-white/95" : "border-white/20 bg-black/90"} ${finalTextColor}`}
               >
-                <SelectItem value="fr">🇫🇷 FR</SelectItem>
-                <SelectItem value="en">🇬🇧 EN</SelectItem>
+                <SelectItem value="fr">
+                  <div className="flex items-center gap-2">
+                    <FlagFR /> <span>FR</span>
+                  </div>
+                </SelectItem>
+                <SelectItem value="en">
+                  <div className="flex items-center gap-2">
+                    <FlagEN /> <span>EN</span>
+                  </div>
+                </SelectItem>
               </SelectContent>
             </Select>
           </div>
