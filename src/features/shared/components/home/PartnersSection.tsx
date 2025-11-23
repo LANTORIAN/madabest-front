@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import Image from "next/image";
 
 const ALL_PARTNERS = [
@@ -34,6 +35,8 @@ function labelFromFilename(name: string) {
 }
 
 export function PartnersSection() {
+  const t = useTranslations("home.partners");
+
   return (
     <section className="bg-[#FFF6E4] py-20 lg:py-28">
       <div className="container mx-auto px-4 sm:px-6 lg:px-[30px]">
@@ -42,7 +45,7 @@ export function PartnersSection() {
           {/* Nos Partenaires Officiels */}
           <div>
             <h2 className="mb-3 text-[48px] leading-[69px] font-medium text-black">
-              Nos Partenaires Officiels
+              {t("official")}
             </h2>
             <div className="grid w-full grid-cols-2 justify-items-start gap-2 md:grid-cols-4">
               {officials.map((file) => (
@@ -65,7 +68,7 @@ export function PartnersSection() {
           {/* Nos Accords Institutionnels */}
           <div>
             <h2 className="mb-8 text-[48px] leading-[69px] font-medium text-black">
-              Nos Accords Institutionnels
+              {t("institutional")}
             </h2>
             <div className="mx-auto inline-grid grid-cols-2 justify-items-start gap-4">
               {institutional.map((file) => (
@@ -89,7 +92,7 @@ export function PartnersSection() {
         {/* Nos Partenaires Aériens */}
         <div>
           <h2 className="mb-8 text-[48px] leading-[69px] font-medium text-black">
-            Nos Partenaires Aériens
+            {t("airlines")}
           </h2>
           <div className="mx-auto inline-grid grid-cols-2 justify-items-start gap-6 md:grid-cols-4">
             {airlines.map((file) => (
