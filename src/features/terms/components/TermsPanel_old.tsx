@@ -29,16 +29,7 @@ export function TermsPanel({ section }: { section: Section }) {
 
       {s.id === "reservation" && (
         <div className="mt-6 flex flex-col gap-4">
-          <p>
-            <span className="font-semibold">La réservation d’un voyage</span> ou autres prestations
-            peut se faire au niveau de <span className="font-semibold">notre bureau</span>,
-            <span className="font-semibold"> par téléphone</span> ou toujours
-            <span className="font-semibold"> confirmée par e-mail</span>. Des communications
-            nécessaires et suffisantes pour l&apos;écoute et la compréhension détaillée de chaque
-            étape, de l&apos;itinéraire et du déroulement de votre voyage, ainsi que les
-            accommodations selon les moyens et moments choisis, sont indispensables. Une facture
-            proforma vous sera expédiée dès confirmation de la prestation.
-          </p>
+          <p dangerouslySetInnerHTML={{ __html: t("reservation.content.intro") }} />
           {/* Image with white border and overlay controls */}
           <div className="relative w-full overflow-hidden rounded-xl border-[3px] border-white md:h-[243px] md:w-[405px]">
             <Image
@@ -56,22 +47,22 @@ export function TermsPanel({ section }: { section: Section }) {
                 />
               </div>
               <span className="flex h-[22px] w-[107px] items-center justify-center rounded-full border border-white bg-black text-[16px] leading-[23px] text-white">
-                Voir la vidéo
+                {t("reservation.content.videoLabel")}
               </span>
             </div>
           </div>
-          <p>L’engagement ne prend effet que qu’à la réception de l’acompte demandé.</p>
+          <p>{t("reservation.content.engagement")}</p>
 
           {/* Contact pills stacked */}
           <div className="flex flex-col gap-3">
             <InfoPill className="w-full md:w-[337px]" icon={<MapPin className="h-4 w-4" />}>
-              43 Rue de la marne – Diego Suarez
+              {t("reservation.content.address")}
             </InfoPill>
             <InfoPill className="w-full md:w-[377px]" icon={<Phone className="h-4 w-4" />}>
-              +261 34 28 325 14 / +261 32 05 127 11
+              {t("reservation.content.phone")}
             </InfoPill>
             <InfoPill className="w-full md:w-[453px]" icon={<Mail className="h-4 w-4" />}>
-              madabesttrip@gmail.com / contact@madabesttour.com
+              {t("reservation.content.email")}
             </InfoPill>
           </div>
         </div>
@@ -79,15 +70,7 @@ export function TermsPanel({ section }: { section: Section }) {
 
       {s.id === "assurance" && (
         <div className="mt-5 space-y-4">
-          <p>
-            Notre agence Madabest a souscrit une assurance en responsabilité civile professionnelle
-            auprès de la compagnie <span className="font-semibold">NY HAVANA</span>, couvrant les
-            risques liés à l’exercice de nos activités. Cependant, cette couverture ne comprend pas
-            les évacuations sanitaires, ni les assurances assistance, annulation ou multirisque
-            voyage. Nous recommandons vivement à chaque voyageur de souscrire, auprès de son
-            assureur habituel, une police d’assurance adaptée (assistance médicale, rapatriement,
-            perte de bagages, annulation, etc.) afin de voyager en toute sérénité.
-          </p>
+          <p dangerouslySetInnerHTML={{ __html: t("assurance.content.description") }} />
           {/* Logo zone (≈200x49) */}
           <div className="h-[49px] w-[200px] overflow-hidden">
             <Image
@@ -100,19 +83,21 @@ export function TermsPanel({ section }: { section: Section }) {
           </div>
 
           <div>
-            <p className="text-[20px] leading-[29px] font-medium">Contact NY HAVANA :</p>
+            <p className="text-[20px] leading-[29px] font-medium">
+              {t("assurance.content.contactTitle")}
+            </p>
             <div className="mt-2 space-y-2 text-sm font-semibold">
               <div className="flex items-center gap-2">
                 <MapPin className="h-5 w-5" />
-                <span className="underline">NY HAVANA - ANTANANARIVO</span>
+                <span className="underline">{t("assurance.content.contactName")}</span>
               </div>
               <div className="flex items-center gap-2">
                 <Phone className="h-5 w-5" />
-                <span className="underline">+261 34 82 523 41</span>
+                <span className="underline">{t("assurance.content.contactPhone")}</span>
               </div>
               <div className="flex items-center gap-2">
                 <Mail className="h-5 w-5" />
-                <span className="underline">nyhavana@gmail.com</span>
+                <span className="underline">{t("assurance.content.contactEmail")}</span>
               </div>
             </div>
           </div>
@@ -123,33 +108,27 @@ export function TermsPanel({ section }: { section: Section }) {
         <div className="mt-5 space-y-6">
           {/* Divider */}
           <hr className="border-t-2 border-[#969696]" />
-          <p>
-            Les tarifs pourront être révisés à la hausse qu’à la baisse, si des changements majeures
-            de l’extérieur de notre entité interviennent, comme :
-          </p>
+          <p>{t("prix.content.revisionIntro")}</p>
           {/* Single-line bullet container (no wrapping) */}
           <div className="overflow-hidden rounded-[10px] border border-[#969696] px-7 py-4">
             <div className="flex flex-nowrap items-center space-x-14 text-[16px] leading-[23px] xl:space-x-16">
               <div className="flex shrink-0 items-center gap-3">
                 <span className="inline-block size-2 rounded-full bg-black" />
-                <span>La hausse de prix du carburant</span>
+                <span>{t("prix.content.reason1")}</span>
               </div>
               <div className="flex shrink-0 items-center gap-3">
                 <span className="inline-block size-2 rounded-full bg-black" />
-                <span>La variation du taux de change etc</span>
+                <span>{t("prix.content.reason2")}</span>
               </div>
               <div className="flex shrink-0 items-center gap-3">
                 <span className="inline-block size-2 rounded-full bg-black" />
-                <span>Le changement de tarif des prestataires spécifiques.</span>
+                <span>{t("prix.content.reason3")}</span>
               </div>
             </div>
           </div>
 
           {/* Closing sentence */}
-          <p className="text-[16px] leading-[23px]">
-            Au cas ou les changements se présentent, ces modification sont communiquées au moins un
-            mois avant la date de départ prévu.
-          </p>
+          <p className="text-[16px] leading-[23px]">{t("prix.content.notice")}</p>
         </div>
       )}
 
@@ -181,41 +160,39 @@ export function TermsPanel({ section }: { section: Section }) {
       {s.id === "annulation" && (
         <div className="mt-6 space-y-4">
           <CancellationRow
-            label="À 20 jours avant le départ :"
-            value="30 % du prix total du voyage"
+            label={t("annulation.content.fee20Days")}
+            value={t("annulation.content.fee20DaysValue")}
           />
           <CancellationRow
-            label="À 15 jours avant la date prévue de départ :"
-            value="50 % du prix total du voyage"
+            label={t("annulation.content.fee15Days")}
+            value={t("annulation.content.fee15DaysValue")}
           />
           <CancellationRow
-            label="À 10 jours avant le départ :"
-            value="75 % du prix total du voyage"
+            label={t("annulation.content.fee10Days")}
+            value={t("annulation.content.fee10DaysValue")}
           />
           <CancellationRow
-            label="À 7 jours avant le départ :"
-            value="100 % du prix total du voyage"
+            label={t("annulation.content.fee7Days")}
+            value={t("annulation.content.fee7DaysValue")}
           />
 
           {/* Additional note + reasons box */}
-          <p className="pt-2 text-[16px] leading-[23px]">
-            Notre agence, Madabest, se réserve le droit d’annuler ou de modifier un voyage, à{" "}
-            <span className="font-semibold">un mois (30 jours)</span> avant la date de départ dans
-            les cas où :
-          </p>
+          <p
+            className="pt-2 text-[16px] leading-[23px]"
+            dangerouslySetInnerHTML={{ __html: t("annulation.content.agencyCancellation") }}
+          />
           <div className="rounded-[14px] border border-[#969696] p-4">
             <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
               <div className="flex max-w-[360px] items-center gap-3">
                 <span className="inline-block size-2 rounded-full bg-black" />
                 <span className="text-[16px] leading-[23px]">
-                  Le solde du règlement de la facture n’a pas été effectué à temps utile
+                  {t("annulation.content.reason1")}
                 </span>
               </div>
               <div className="flex max-w-[520px] items-center gap-3">
                 <span className="inline-block size-2 rounded-full bg-black" />
                 <span className="text-[16px] leading-[23px]">
-                  Les problèmes majeurs externes, éventuels de changement sur le transport aérien,
-                  et les conditions climatique etc surgissent.
+                  {t("annulation.content.reason2")}
                 </span>
               </div>
             </div>
